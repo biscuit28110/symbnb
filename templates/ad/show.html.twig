@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    {{ad.title}}
+{% endblock %}
+
+{% block body %}
+
+<div class="ad-title" style="background-image: url ({{ad.coverImage}})">
+    <div class="container">
+    <h1> {{ad.title}}</h1>
+    <p>{{ad.introduction}} </p>
+    <p class="h2">
+        <strong>{{ads.rooms}} chambres </strong> pour <strong> {{ad.price}}&euro;</strong>par nuit
+    </p>
+        <a href="#" class="btn btn-primary">Réserver</a>
+    </div>
+</div>
+
+{% endblock %}
