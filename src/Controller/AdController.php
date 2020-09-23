@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Ad;
 use App\Repository\AdRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdController extends AbstractController
 {
@@ -20,6 +22,15 @@ class AdController extends AbstractController
             'ads' => $ads
         ]);
     }
+
+      /**
+     * Permet de créer une annonce
+     * @Route("ads/new",name="ads_create")
+     * @return Response
+     */
+    public function create(){
+        return $this->render('ad/new.html.twig');}
+
     /**
      * Permet d'afficher une seule annonce
      *
@@ -27,12 +38,9 @@ class AdController extends AbstractController
      * 
      * @return Response
      */
-    public function show($slug, AdRepository $repo){
-        // Je récupère l'annonce qui correspond au slug !
-        $ad = $repo->findOneBySlug($slug);
-
-        return $this->render('ad/show.html.twig', [
+    public function show(Ad $ad){
+      return $this->render('ad/show.html.twig', [
             'ad' => $ad
         ]);
-    }
+      }
 }
